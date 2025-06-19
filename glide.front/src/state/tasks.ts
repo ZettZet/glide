@@ -1,5 +1,5 @@
-import { atom } from 'jotai'
 import type { Task, TaskId } from 'entities/tasks'
+import { atom } from 'jotai'
 
 const mockTasks = Array.from<unknown, Task>({ length: 20 }, (_, index) => ({
   comments: [],
@@ -7,7 +7,7 @@ const mockTasks = Array.from<unknown, Task>({ length: 20 }, (_, index) => ({
   direction: 'system',
   executors: {},
   id: index.toString(),
-  mainName: `Название ${index}`,
+  mainName: `Какое-то длинное название ${index}`,
   module: 'inter',
   priority: 5,
   sprint: {
@@ -26,4 +26,3 @@ export const getActiveTaskAtom = atom((get) => {
   const activeTaskId = get(activeTaskAtom)
   return get(tasksAtom).find((item) => item.id === activeTaskId)
 })
-

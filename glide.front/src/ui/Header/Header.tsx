@@ -1,5 +1,3 @@
-import type { FC } from 'react'
-
 import {
   Button,
   Link,
@@ -8,11 +6,12 @@ import {
   NavbarContent,
   NavbarItem,
 } from '@heroui/react'
+import type { FC } from 'react'
 import { ThemeSwitch } from 'shared/ui'
 
 export const Header: FC = () => {
   return (
-    <Navbar>
+    <Navbar className="col-span-3" classNames={{ wrapper: 'max-w-6xl' }}>
       <NavbarBrand>Glide</NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
@@ -27,12 +26,9 @@ export const Header: FC = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <ThemeSwitch />
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+            Войти
           </Button>
         </NavbarItem>
       </NavbarContent>

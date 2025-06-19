@@ -1,9 +1,8 @@
-import type { FC } from 'react'
 import type { Task } from 'entities/tasks'
-
-import { TaskTypeIcon } from './TaskType'
+import type { FC } from 'react'
 import { For } from 'shared/ui'
 import { TaskModule } from '../Common'
+import { TaskTypeIcon } from './TaskType'
 
 export const TaskItem: FC<{ task: Task }> = ({ task }) => {
   const totalLaborCost = Object.values(task.executors).reduce((acc, item) => {
@@ -13,15 +12,13 @@ export const TaskItem: FC<{ task: Task }> = ({ task }) => {
 
   return (
     <>
-      <div>
-        <span>
-          <h3>{task.mainName}</h3>
-          <TaskModule direction={task.direction} module={task.module} />
-        </span>
-        <h4>
-          <span>{task.priority}</span>/<span>{totalLaborCost} дней</span>
-        </h4>
-      </div>
+      <span>
+        <h1 className="text-xl ">{task.mainName}</h1>
+        <TaskModule direction={task.direction} module={task.module} />
+      </span>
+      <h4>
+        <span>{task.priority}</span>/<span>{totalLaborCost} дней</span>
+      </h4>
       <For each={task.taskType}>
         {(type) => <TaskTypeIcon key={type} taskType={type} />}
       </For>

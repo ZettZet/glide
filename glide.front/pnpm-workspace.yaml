@@ -1,6 +1,6 @@
 onlyBuiltDependencies:
-  - '@heroui/shared-utils'
-  - '@parcel/watcher'
-  - '@swc/core'
-  - '@tailwindcss/oxide'
+  - "@heroui/shared-utils"
+  - "@parcel/watcher"
+  - "@swc/core"
+  - "@tailwindcss/oxide"
   - esbuild

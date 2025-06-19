@@ -6,8 +6,8 @@ export const TaskModule: FC<{
   direction: Task['direction']
 }> = (task) => {
   return (
-    <h4>
-      {task.module}/{task.direction}
-    </h4>
+    <h2 className="text-large">
+      {task.module} | {task.direction}
+    </h2>
   )
 }

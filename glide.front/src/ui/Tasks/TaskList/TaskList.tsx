@@ -1,24 +1,32 @@
-import { useAtomValue } from 'jotai'
-import type { FC } from 'react'
-import { tasksAtom } from 'state/tasks'
-import { TaskItem } from './TaskItem'
-import css from './TaskList.module.css'
 import { Input, Listbox, ListboxItem } from '@heroui/react'
+import type { TaskId } from 'entities/tasks'
+import { useAtomValue, useSetAtom } from 'jotai'
+import type { FC } from 'react'
+import { activeTaskAtom, tasksAtom } from 'state/tasks'
+import { TaskItem } from './TaskItem'
 
 export const TaskList: FC = () => {
   const tasks = useAtomValue(tasksAtom)
+  const setActiveTaskId = useSetAtom(activeTaskAtom)
 
   return (
-    <div className={css.listContainer}>
+    <div className="flex flex-col min-h-full">
       <Input placeholder="Поиск" />
       <Listbox
-        className={css.list}
+        className="overflow-y-auto"
         items={tasks}
-        classNames={{ list: css.list }}
+        selectionMode="single"
+        onSelectionChange={(keys) => {
+          if (keys instanceof Set) {
+            setActiveTaskId(Array.from(keys)[0] as TaskId)
+          }
+        }}
+        aria-label="Список задач"
+        selectionBehavior="replace"
       >
         {(task) => (
-          <ListboxItem>
-            <TaskItem key={task.id} task={task} />
+          <ListboxItem key={task.id}>
+            <TaskItem task={task} />
           </ListboxItem>
         )}
       </Listbox>
